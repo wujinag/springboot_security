@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
+/**
+ * 项目启动加载数据至缓存中
+ */
 @Slf4j
 @Component
 public class LoadDataApplicationRunner implements ApplicationRunner {

@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     druid:
-      url: jdbc:mysql://192.168.221.128:3306/world?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -22,7 +22,7 @@ spring:
       filters: stat,wall
   redis:
     port: 6379
-    host: 192.168.221.128
+    host: 127.0.0.1
     lettuce:
       pool:
         max-active: -1

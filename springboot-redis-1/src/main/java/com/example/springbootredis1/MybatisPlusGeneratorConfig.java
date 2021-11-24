@@ -17,8 +17,9 @@ public class MybatisPlusGeneratorConfig {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("astupidcoder");
+        //注意这个springboot-redis-1，由于我是在子模块下生成代码的，所以多加了一层目录；单层项目不需要加。
+        gc.setOutputDir(projectPath + "/springboot-redis-1" + "/src/main/java");
+        gc.setAuthor("chen");
         gc.setOpen(false);
         //实体属性 Swagger2 注解
         gc.setSwagger2(false);
@@ -26,16 +27,16 @@ public class MybatisPlusGeneratorConfig {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/world?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("123456");
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.example.springbootredisexample");
+        pc.setParent("com.example.springbootredis1");
         pc.setEntity("dal.model");
         pc.setMapper("dal.mapper");
         pc.setService("service");
@@ -62,7 +63,8 @@ public class MybatisPlusGeneratorConfig {
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
-        strategy.setInclude(scanner("city,country,countrylanguage").split(","));
+        //表名
+        strategy.setInclude(scanner("mine").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
