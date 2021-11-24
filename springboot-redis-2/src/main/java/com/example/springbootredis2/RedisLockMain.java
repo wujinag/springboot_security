@@ -13,7 +13,7 @@ public class RedisLockMain {
 
     static {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://192.168.221.128:6379");
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
         redissonClient = Redisson.create(config);
     }
 

@@ -19,6 +19,10 @@ public class HashedWheelController {
             new DefaultThreadFactory("demo-timer"),
             100, TimeUnit.MILLISECONDS, 1024, false);
 
+    /**
+     * 添加延时任务
+     * @param delay
+     */
     @GetMapping("/{delay}")
     public void tick(@PathVariable("delay") Long delay) {
         //SCHEDULED(定时执行的线程）
