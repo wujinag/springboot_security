@@ -55,6 +55,7 @@ public class LotteryServiceImpl extends ServiceImpl<LotteryMapper, Lottery> impl
         RewardContext context = new RewardContext();
         LotteryItem lotteryItem = null;
         try {
+            //JUC工具 需要等待线程结束之后才能运行
             CountDownLatch countDownLatch = new CountDownLatch(1);
             //判断活动有效性
             Lottery lottery = checkLottery(drawDto);
@@ -101,6 +102,7 @@ public class LotteryServiceImpl extends ServiceImpl<LotteryMapper, Lottery> impl
         if (lottery == null) {
             throw new BizException(ReturnCodeEnum.LOTTER_NOT_EXIST.getCode(), ReturnCodeEnum.LOTTER_NOT_EXIST.getMsg());
         }
+        //判断活动是否结束
         LocalDateTime now = LocalDateTime.now();
         if (now.isBefore(lottery.getStartTime()) || now.isAfter(lottery.getEndTime())) {
             throw new BizException(ReturnCodeEnum.LOTTER_FINISH.getCode(), ReturnCodeEnum.LOTTER_FINISH.getMsg());

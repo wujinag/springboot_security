@@ -46,13 +46,19 @@ public class LotteryController {
         log.info("begin LotteryController.doDraw,access user {}, lotteryId,{}:", accountIp, id);
         ResultResp<LotteryItemVo> resultResp = new ResultResp<>();
         try {
+            //判断当前用户上一次抽奖是否结束
             checkDrawParams(id, accountIp);
+
+            //抽奖
             DoDrawDto dto = new DoDrawDto();
             dto.setAccountIp(accountIp);
             dto.setLotteryId(id);
             lotteryService.doDraw(dto);
+
+            //返回结果设置
             resultResp.setCode(ReturnCodeEnum.SUCCESS.getCode());
             resultResp.setMsg(ReturnCodeEnum.SUCCESS.getMsg());
+            //对象转换
             resultResp.setResult(lotteryConverter.dto2LotteryItemVo(dto));
         } catch (Exception e) {
             return ExceptionUtil.handlerException4biz(resultResp, e);

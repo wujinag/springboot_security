@@ -27,7 +27,7 @@ public class LotteryRecordController {
     @GetMapping
     public ResultResp<List<LotteryRecord>> records() {
         List<LotteryRecord> records = lotteryRecordService.list();
-        ResultResp resultResp = new ResultResp();
+        ResultResp<List<LotteryRecord>> resultResp = new ResultResp<>();
         resultResp.setMsg(ReturnCodeEnum.SUCCESS.getMsg());
         resultResp.setCode(ReturnCodeEnum.SUCCESS.getCode());
         resultResp.setResult(records);
