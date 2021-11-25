@@ -34,7 +34,7 @@ CREATE TABLE `lottery` (
 -- ----------------------------
 -- Records of lottery
 -- ----------------------------
-INSERT INTO `lottery` VALUES ('1', '幸运大抽奖', '1', 'localhost:8080/lottery', null, '2021-07-01 22:06:23', '2021-07-31 22:06:28', '2021-07-01 22:06:32');
+INSERT INTO `lottery` VALUES ('1', '幸运大抽奖', '1', 'localhost:8080/lottery', null, '2021-12-01 22:06:23', '2021-12-31 22:06:28', '2021-12-01 22:06:32');
 
 -- ----------------------------
 -- Table structure for lottery_item
@@ -55,12 +55,12 @@ CREATE TABLE `lottery_item` (
 -- ----------------------------
 -- Records of lottery_item
 -- ----------------------------
-INSERT INTO `lottery_item` VALUES ('1', '1', '一等奖', '1', '0.02', '1', '2021-07-01 22:10:00', '0');
-INSERT INTO `lottery_item` VALUES ('2', '1', '二等奖', '2', '0.09', '2', '2021-07-01 22:11:10', '0');
-INSERT INTO `lottery_item` VALUES ('3', '1', '三等奖', '3', '0.20', '3', '2021-07-01 22:11:37', '0');
-INSERT INTO `lottery_item` VALUES ('4', '1', '四等奖', '4', '0.30', '4', '2021-07-01 22:12:25', '0');
-INSERT INTO `lottery_item` VALUES ('5', '1', '五等奖', '5', '0.40', '5', '2021-07-01 22:12:48', '0');
-INSERT INTO `lottery_item` VALUES ('6', '1', '六等奖', '6', '0.80', '6', '2021-07-01 22:13:04', '1');
+INSERT INTO `lottery_item` VALUES ('1', '1', '一等奖', '1', '0.02', '1', '2021-12-01 22:10:00', '0');
+INSERT INTO `lottery_item` VALUES ('2', '1', '二等奖', '2', '0.09', '2', '2021-12-01 22:11:10', '0');
+INSERT INTO `lottery_item` VALUES ('3', '1', '三等奖', '3', '0.20', '3', '2021-12-01 22:11:37', '0');
+INSERT INTO `lottery_item` VALUES ('4', '1', '四等奖', '4', '0.30', '4', '2021-12-01 22:12:25', '0');
+INSERT INTO `lottery_item` VALUES ('5', '1', '五等奖', '5', '0.40', '5', '2021-12-01 22:12:48', '0');
+INSERT INTO `lottery_item` VALUES ('6', '1', '六等奖', '6', '0.80', '6', '2021-12-01 22:13:04', '1');
 
 -- ----------------------------
 -- Table structure for lottery_prize
@@ -103,8 +103,8 @@ CREATE TABLE `lottery_record` (
 -- ----------------------------
 -- Records of lottery_record
 -- ----------------------------
-INSERT INTO `lottery_record` VALUES ('1', '192.168.1.102', '5', '移动电源', '2021-07-02 22:21:09');
-INSERT INTO `lottery_record` VALUES ('2', '192.168.1.102', '5', '移动电源', '2021-07-02 22:22:03');
-INSERT INTO `lottery_record` VALUES ('3', '192.168.1.102', '6', '记事本', '2021-07-02 22:22:34');
-INSERT INTO `lottery_record` VALUES ('4', '192.168.1.102', '5', '移动电源', '2021-07-02 22:22:45');
-INSERT INTO `lottery_record` VALUES ('5', '192.168.1.102', '6', '记事本', '2021-07-02 22:23:00');
+INSERT INTO `lottery_record` VALUES ('1', '192.168.1.102', '5', '移动电源', '2021-12-02 22:21:09');
+INSERT INTO `lottery_record` VALUES ('2', '192.168.1.102', '5', '移动电源', '2021-12-02 22:22:03');
+INSERT INTO `lottery_record` VALUES ('3', '192.168.1.102', '6', '记事本', '2021-12-02 22:22:34');
+INSERT INTO `lottery_record` VALUES ('4', '192.168.1.102', '5', '移动电源', '2021-12-02 22:22:45');
+INSERT INTO `lottery_record` VALUES ('5', '192.168.1.102', '6', '记事本', '2021-12-02 22:23:00');
