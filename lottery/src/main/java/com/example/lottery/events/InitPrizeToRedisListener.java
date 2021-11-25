@@ -24,8 +24,10 @@ public class InitPrizeToRedisListener implements ApplicationListener<InitPrizeTo
 
     @Autowired
     RedisTemplate redisTemplate;
+
     @Autowired
     LotteryPrizeMapper lotteryPrizeMapper;
+
     @Autowired
     LotteryItemMapper lotteryItemMapper;
 
