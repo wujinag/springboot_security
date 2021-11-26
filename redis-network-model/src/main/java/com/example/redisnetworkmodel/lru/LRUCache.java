@@ -5,11 +5,14 @@ import java.util.HashMap;
 public class LRUCache {
 
     private Node head;
+
     private Node tail;
 
     private final HashMap<String, Node> nodeHashMap;
+
     private int capacity; //容量
 
+    //初始化
     public LRUCache(int capacity) {
         this.capacity = capacity;
         nodeHashMap = new HashMap<>();
@@ -21,6 +24,7 @@ public class LRUCache {
 
     //移除节点
     private void removeNode(Node node) {
+        //判断是否为头节点还是为节点
         if (node == tail) {
             tail = tail.prev;
             tail.next = null;
@@ -33,6 +37,7 @@ public class LRUCache {
         }
     }
 
+    //添加节点到头部
     private void addNodeToHead(Node node) {
         node.next = head.next;
         head.next.prev = node;
@@ -40,12 +45,15 @@ public class LRUCache {
         head.next = node;
     }
 
+    //将节点移动至头节点
     private void moveNodeToHead(Node node) {
         removeNode(node);
         addNodeToHead(node);
     }
 
+    //获取节点
     public String get(String key) {
+        //从map获取，o1
         Node node = nodeHashMap.get(key);
         if (node == null) {
             return null;
@@ -55,6 +63,7 @@ public class LRUCache {
         return node.value;
     }
 
+    //添加节点
     public void put(String key, String value) {
         Node node = nodeHashMap.get(key);
         if (node == null) { //如果不存在，则添加到链表
@@ -66,7 +75,9 @@ public class LRUCache {
             nodeHashMap.put(key, node);
             addNodeToHead(node);
         } else {
+            //重新赋值
             node.value = value;
+            //移动位置到头部
             moveNodeToHead(node);
         }
     }

@@ -10,10 +10,13 @@ import java.nio.charset.StandardCharsets;
 public class AsyncHandler implements Runnable {
 
     private SocketChannel channel;
+
     private SelectionKey sk;
+    //存储客户端的完整消息
     StringBuilder stringBuilder = new StringBuilder();
 
     ByteBuffer inputBuffer = ByteBuffer.allocate(1024);
+
     ByteBuffer outputBuffer = ByteBuffer.allocate(1024);
 
     public AsyncHandler(SocketChannel channel) {
@@ -56,19 +59,19 @@ public class AsyncHandler implements Runnable {
 
     private boolean inputBufferComplete(int bytes) throws EOFException {
         if (bytes > 0) {
-            inputBuffer.flip();
-            while (inputBuffer.hasRemaining()) {
+            inputBuffer.flip(); //转化成读取模式
+            while (inputBuffer.hasRemaining()) { //判断缓冲区中是否还有元素
                 byte ch = inputBuffer.get(); //得到输入的字符
                 if (ch == 3) { //表示Ctrl+c
                     throw new EOFException();
-                } else if (ch == '\r' || ch == '\n') {
+                } else if (ch == '\r' || ch == '\n') { //表示换行符
                     return true;
                 } else {
-                    stringBuilder.append((char) ch);
+                    stringBuilder.append((char) ch); //拼接读取到的数据
                 }
             }
         } else if (bytes == 1) {
-            throw new EOFException();
+            throw new EOFException(); //客户端关闭了连接
         }
         return false;
     }
@@ -81,7 +84,7 @@ public class AsyncHandler implements Runnable {
         }
         outputBuffer.clear();
         stringBuilder.delete(0, stringBuilder.length());
-        if (write <= 0) {
+        if (write <= 0) { //表示客户端没有输信息
             this.sk.channel().close();
         } else {
             channel.write(ByteBuffer.wrap("\r\nreactor> ".getBytes()));

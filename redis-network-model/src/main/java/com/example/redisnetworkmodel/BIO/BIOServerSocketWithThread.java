@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 public class BIOServerSocketWithThread {
 
+    //创建线程池
     static ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class BIOServerSocketWithThread {
             while (true) {
                 Socket socket = serverSocket.accept(); //连接阻塞
                 System.out.println("客户端：" + socket.getPort());
-                //IO变成了异步执行
+                //IO操作变成了异步执行
                 executorService.submit(new SocketThread(socket));
             }
         } catch (IOException e) {

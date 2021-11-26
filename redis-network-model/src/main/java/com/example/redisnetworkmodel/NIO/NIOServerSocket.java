@@ -7,34 +7,36 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 public class NIOServerSocket {
-    //NIO中的核心
-    //channel
-    //buffer
-    //selector
 
     public static void main(String[] args) {
         try {
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-            serverSocketChannel.configureBlocking(false); //设置连接非阻塞
+            serverSocketChannel.configureBlocking(false); //设置非阻塞
             serverSocketChannel.socket().bind(new InetSocketAddress(8080));
+            //保持连接
             while (true) {
-                //是非阻塞的
-                SocketChannel socketChannel = serverSocketChannel.accept(); //获得一个客户端连接
-//                socketChannel.configureBlocking(false);//IO非阻塞
+                SocketChannel socketChannel = serverSocketChannel.accept();
                 if (socketChannel != null) {
-                    ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-                    int i = socketChannel.read(byteBuffer);
-                    Thread.sleep(10000);
-                    byteBuffer.flip(); //反转
-                    socketChannel.write(byteBuffer);
+                    //读取数据
+                    ByteBuffer buffer = ByteBuffer.allocate(1024);
+                    socketChannel.read(buffer);
+                    System.out.println(new String(buffer.array()));
+
+                    //写出数据
+                    Thread.sleep(10000); //阻塞一段时间
+                    //当数据读取到缓冲区之后，接下来就需要把缓冲区的数据写出到通道，而在写出之前必须要调用flip方法，实际上就是重置一个有效字节范围，然后把这个数据接触到通道。
+                    buffer.flip();
+                    socketChannel.write(buffer);//写出数据
                 } else {
                     Thread.sleep(1000);
-                    System.out.println("连接位就绪");
+                    System.out.println("连接未就绪");
                 }
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
+
 }

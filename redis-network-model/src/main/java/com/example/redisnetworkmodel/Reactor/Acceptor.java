@@ -9,6 +9,7 @@ import java.nio.channels.SocketChannel;
 public class Acceptor implements Runnable {
 
     private final Selector selector;
+
     private final ServerSocketChannel serverSocketChannel;
 
     public Acceptor(Selector selector, ServerSocketChannel serverSocketChannel) {
@@ -18,12 +19,15 @@ public class Acceptor implements Runnable {
 
     @Override
     public void run() {
+
         SocketChannel channel;
 
         try {
             channel = serverSocketChannel.accept();//得到一个客户端连接
             System.out.println(channel.getRemoteAddress() + ":收到一个客户端连接");
             channel.configureBlocking(false);
+            //当channel连接中数据就绪时，调用DispatchHandler来处理channel
+            //巧妙使用了SocketChannel的attach功能，将Hanlder和可能会发生事件的channel链接在一起，当发生事件时，可以立即触发相应链接的Handler。
             channel.register(selector, SelectionKey.OP_READ, new Handler(channel));
         } catch (IOException e) {
             e.printStackTrace();

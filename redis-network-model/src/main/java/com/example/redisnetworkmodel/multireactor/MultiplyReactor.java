@@ -8,8 +8,10 @@ public class MultiplyReactor {
 
     private int port;
 
+    // 主 Reactor，接收连接，把 SocketChannel 注册到从 Reactor 上
     private Reactor mainReactor; //main Reactor
 
+    // Reactor（Selector） 线程池，其中一个线程被 mainReactor 使用，剩余线程都被 subReactor 使用
     Executor mainReactorExecutor = Executors.newFixedThreadPool(10);
 
     public MultiplyReactor(int port) throws IOException {
@@ -17,9 +19,12 @@ public class MultiplyReactor {
         mainReactor = new Reactor();
     }
 
+    /**
+     * 启动主从 Reactor，初始化并注册 Acceptor 到主 Reactor
+     */
     public void start() throws IOException {
-        new Acceptor(mainReactor.getSelector(), port);
-        mainReactorExecutor.execute(mainReactor);
+        new Acceptor(mainReactor.getSelector(), port); // 将 ServerSocketChannel 注册到 mainReactor
+        mainReactorExecutor.execute(mainReactor); //使用线程池来处理main Reactor的连接请求
     }
 
     public static void main(String[] args) throws IOException {

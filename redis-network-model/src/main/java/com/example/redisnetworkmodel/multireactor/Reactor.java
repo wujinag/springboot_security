@@ -26,13 +26,13 @@ public class Reactor implements Runnable {
         while (!Thread.interrupted()) {
             AsyncHandler handler;
             try {
-                while ((handler = events.poll()) != null) { //可以
+                while ((handler = events.poll()) != null) {
                     handler.getChannel().configureBlocking(false);
                     SelectionKey selectionKey = handler.getChannel().register(selector, SelectionKey.OP_READ);
                     selectionKey.attach(handler);
                     handler.setSk(selectionKey);
                 }
-                selector.select();
+                selector.select(); //阻塞
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 while (iterator.hasNext()) {

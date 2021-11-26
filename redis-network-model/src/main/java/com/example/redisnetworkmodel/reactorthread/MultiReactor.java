@@ -12,8 +12,10 @@ import java.util.Set;
 public class MultiReactor implements Runnable {
 
     private final Selector selector;
+
     private final ServerSocketChannel serverSocketChannel;
 
+    //建立连接，同时注册到selector中
     public MultiReactor(int port) throws IOException {
         selector = Selector.open();
         serverSocketChannel = ServerSocketChannel.open();
@@ -26,11 +28,14 @@ public class MultiReactor implements Runnable {
     public void run() {
         while (!Thread.interrupted()) {
             try {
+                //遍历目前队列中的操作
                 selector.select();
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = selectionKeys.iterator();
                 while (iterator.hasNext()) {
+                    //分发
                     dispatch(iterator.next());
+                    //遍历之后移除
                     iterator.remove();
                 }
             } catch (IOException e) {

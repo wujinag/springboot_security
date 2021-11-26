@@ -17,7 +17,7 @@ public class SocketThread implements Runnable {
     @Override
     public void run() {
         try {
-            //inputStream是阻塞的
+            //注意inputStream是阻塞的
             //表示获取客户端的请求报文
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String clientStr = bufferedReader.readLine();

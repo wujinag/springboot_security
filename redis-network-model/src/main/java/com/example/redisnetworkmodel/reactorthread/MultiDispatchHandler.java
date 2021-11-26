@@ -7,13 +7,13 @@ import java.nio.channels.SocketChannel;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class MutilDispatchHandler implements Runnable {
+public class MultiDispatchHandler implements Runnable {
 
     SocketChannel channel;
 
     private Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public MutilDispatchHandler(SocketChannel channel) {
+    public MultiDispatchHandler(SocketChannel channel) {
         this.channel = channel;
     }
 
@@ -53,12 +53,6 @@ public class MutilDispatchHandler implements Runnable {
                     }
                 } while (len > buffer.capacity());
                 System.out.println("total:" + total);
-
-                //msg=表示通信传输报文
-                //耗时2s
-                //登录： username:password
-                //ServetRequets: 请求信息
-                //数据库的判断
                 //返回数据，通过channel写回到客户端
                 System.out.println(channel.getRemoteAddress() + ": Server receive Msg:" + msg);
             } catch (Exception e) {
