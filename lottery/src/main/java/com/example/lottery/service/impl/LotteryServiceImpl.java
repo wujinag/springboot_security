@@ -128,6 +128,7 @@ public class LotteryServiceImpl extends ServiceImpl<LotteryMapper, Lottery> impl
             throw new BizException(ReturnCodeEnum.LOTTER_ITEM_NOT_INITIAL.getCode(), ReturnCodeEnum.LOTTER_ITEM_NOT_INITIAL.getMsg());
         }
         int lastScope = 0;
+        //将数组随机打乱
         Collections.shuffle(lotteryItems);
         Map<Integer, int[]> awardItemScope = new HashMap<>();
         //item.getPercent=0.05 = 5%
