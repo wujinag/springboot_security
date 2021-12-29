@@ -4,6 +4,9 @@ import org.springframework.context.ApplicationEvent;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * 事件
+ */
 public class InitPrizeToRedisEvent extends ApplicationEvent {
 
     private Integer lotteryId;

@@ -40,6 +40,13 @@ public class LotteryController {
     @Autowired
     LotteryConverter lotteryConverter;
 
+    /**
+     * 抽奖入口
+     *
+     * @param id
+     * @param request
+     * @return
+     */
     @GetMapping("/{id}")
     public ResultResp<LotteryItemVo> doDraw(@PathVariable("id") Integer id, HttpServletRequest request) {
         String accountIp = CusAccessObjectUtil.getIpAddress(request);

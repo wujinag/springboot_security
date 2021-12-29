@@ -34,12 +34,14 @@ spring:
     view:
       prefix: classpath:/templates/
       suffix: .html
+# mybatis-plus
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
   mapper-locations: classpath*:mapper/**/*Mapper.xml
 
+# 线程池
 async:
   executor:
     thread:
