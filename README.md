@@ -2,7 +2,7 @@
 
 ### 介绍
 
-redis学习案例   参考别人的项目自己进行了添加
+redis学习案例   参考别人的项目自己实现了抽奖的登录认证功能 简单的springboot+springSecurity+mybatis-plus实现的
 
 ### 结构
 
