@@ -17,8 +17,8 @@ public class MybatisPlusGeneratorConfig {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("chen");
+        gc.setOutputDir(projectPath + "/lottery/src/main/java");
+        gc.setAuthor("wuj");
         gc.setOpen(false);
         //实体属性 Swagger2 注解
         gc.setSwagger2(false);
@@ -26,10 +26,10 @@ public class MybatisPlusGeneratorConfig {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/lottery?useUnicode=true&characterEncoding=utf-8&useSSL=false");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setPassword("root");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -62,11 +62,11 @@ public class MybatisPlusGeneratorConfig {
 //        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
-        strategy.setInclude(scanner("lottery,lottery_item,lottery_prize,lottery_record").split(","));
+        strategy.setInclude(scanner("lottery_user,lottery_role,lottery_role_user").split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
-        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+        //mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
     }
 
