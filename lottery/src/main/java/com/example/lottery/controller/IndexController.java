@@ -36,12 +36,12 @@ public class IndexController {
      */
     @GetMapping("/index")
     public String login(ModelMap map) {
-        //单个数据
-        map.put("account", "账号");
-        LoginUser user = new LoginUser();
-        user.setPassword("test_ps");
-        user.setAccount("test");
-        map.put("loginUser", user);
+        ////单个数据
+        //map.put("account", "账号");
+        //LoginUser user = new LoginUser();
+        //user.setPassword("test_ps");
+        //user.setAccount("test");
+        //map.put("loginUser", user);
         return "login";
     }
 
